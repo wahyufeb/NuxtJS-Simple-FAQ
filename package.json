@@ -1,0 +1,23 @@
+{
+  "name": "simple-faq",
+  "version": "1.0.0",
+  "description": "My legendary Nuxt.js project",
+  "author": "Wahyu Febrianto",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/auth": "^4.9.1",
+    "@nuxtjs/axios": "^5.10.3",
+    "axios": "^0.19.2",
+    "bootstrap": "^4.1.3",
+    "bootstrap-vue": "^2.0.0",
+    "nuxt": "^2.0.0",
+    "vuex": "^3.4.0"
+  },
+  "devDependencies": {}
+}
