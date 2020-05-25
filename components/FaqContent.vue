@@ -53,7 +53,7 @@ export default {
   methods: {
     ...mapActions(["fetchFaqLists", "setDetail"]),
     onDetail(id) {
-      const index = this.allList.findIndex(a => a.id === id);
+      const index = this.allList.findIndex(data => data.id === id);
       console.log(id);
       this.setDetail(index);
     }

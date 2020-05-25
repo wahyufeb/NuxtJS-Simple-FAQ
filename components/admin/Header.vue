@@ -2,11 +2,18 @@
   <header>
     <h5>Selamat Datang {{ username }}</h5>
     <ul>
-      <li>Tambah FAQ</li>
+      <li>
+        <a href="/admin">
+          Daftar FAQ
+        </a>
+      </li>
       <li>
         <a href="/admin/faq-user">
           Daftar Pertanyaan User
         </a>
+      </li>
+      <li>
+        <b-button @click="onLogout" variant="danger">Logout</b-button>
       </li>
     </ul>
   </header>
@@ -18,6 +25,13 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   props: {
     username: { type: String }
+  },
+  methods: {
+    onLogout() {
+      sessionStorage.clear();
+      localStorage.clear();
+      this.$router.push("/login");
+    }
   }
 };
 </script>

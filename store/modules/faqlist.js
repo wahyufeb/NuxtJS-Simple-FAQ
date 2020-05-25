@@ -75,6 +75,52 @@ const actions = {
     } catch (err) {
       console.log(err);
     }
+  },
+
+  async updateFaqAction({ commit }, data) {
+    try {
+      const response = await axios.post(
+        `${API}/list-faq/admin/save?id=${data.id}`,
+        {
+          pertanyaan: data.pertanyaan,
+          jawaban: data.jawaban
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${data.token}`
+          }
+        }
+      );
+      setTimeout(() => {
+        commit("setStateAfterUpdate", data);
+      }, 1000);
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  },
+
+  async createFaqAction({ commit }, data) {
+    try {
+      const response = await axios.post(
+        `${API}/list-faq/admin/save`,
+        {
+          pertanyaan: data.pertanyaan,
+          jawaban: data.jawaban
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${data.token}`
+          }
+        }
+      );
+      setTimeout(() => {
+        commit("setStateAfterCreated", response.data.data);
+      }, 1000);
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
   }
 };
 
@@ -87,7 +133,19 @@ const mutations = {
     (state.faqlist[index].displayed = !state.faqlist[index].displayed),
 
   setAfterAction: (state, id) =>
-    (state.faqlist = state.faqlist.filter(data => data.id !== id))
+    (state.faqlist = state.faqlist.filter(data => data.id !== id)),
+
+  setStateAfterUpdate: (state, data) => {
+    const index = state.faqlist.findIndex(
+      dataState => dataState.id === data.id
+    );
+    state.faqlist[index].pertanyaan = data.pertanyaan;
+    state.faqlist[index].jawaban = data.jawaban;
+  },
+
+  setStateAfterCreated: (state, data) => {
+    state.faqlist.push(data);
+  }
 };
 
 export default {

@@ -23,14 +23,12 @@
                   v-b-modal.modal-1
                 >
                   <i class="fas fa-reply"></i>
-                  Balas
                 </b-button>
                 <b-button
                   variant="outline-danger mt-2"
                   @click="hapusFaq(listItem.id)"
                 >
                   <i class="fas fa-trash"></i>
-                  Hapus
                 </b-button>
               </td>
             </tr>
@@ -64,14 +62,14 @@
         title="Balas Pertanyaan User"
       >
         <div v-show="allNotification.status">
-          <div v-if="allNotification.status">
-            <b-alert show variant="success">
+          <div v-if="allNotification.error">
+            <b-alert show variant="danger">
               {{ allNotification.message }}
             </b-alert>
           </div>
           <div v-else>
-            <b-alert show variant="danger">
-              {{ allNotification.message }}
+            <b-alert show variant="success">
+              FAQ Berhasil Terjawab
             </b-alert>
           </div>
         </div>
@@ -146,23 +144,18 @@ export default {
       };
       const response = await this.balasFaqAction(data);
       const resData = response.data;
-      if (resData.code !== 200) {
-        const notif = {
-          status: true,
-          message: resData.message,
-          error: resData.errors
-        };
-        this.setNotification(notif);
-      } else {
-        const notif = {
-          status: true,
-          message: "FAQ berhasil terjawab",
-          error: resData.errors
-        };
-        this.setNotification(notif);
-      }
+      const notif = {
+        status: true,
+        message: resData.message,
+        error: resData.errors
+      };
+      this.setNotification(notif);
+
       setTimeout(() => {
         this.hideModal();
+        this.id = "";
+        this.pertanyaanModal = "";
+        this.jawabanModal = "";
       }, 2000);
     }
   }
