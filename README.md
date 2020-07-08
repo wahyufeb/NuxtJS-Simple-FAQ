@@ -1,6 +1,12 @@
-# simple-faq
+# Simple FAQ
 
-> My legendary Nuxt.js project
+Application Link (https://nuxtjs-simple-faq.vercel.app/)
+
+### Thank you for
+
+> Nuxtjs (https://nuxtjs.org)
+
+> Vercel (https://vercel.com)
 
 ## Build Setup
 
